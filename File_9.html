@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Encoding Example</title>
+</head>
+<body>
+
+    <h2>URL Encoding with JavaScript</h2>
+
+    <input type="text" id="text" value="HTML encoding & symbols">
+    <button onclick="encodeURL()">Encode</button>
+    <p id="result"></p>
+
+    <script>
+        function encodeURL() {
+            const text = document.getElementById('text').value;
+            const encodedText = encodeURIComponent(text);  // URL encoding
+            document.getElementById('result').innerText = "Encoded URL: " + encodedText;
+        }
+    </script>
+
+</body>
+</html>
