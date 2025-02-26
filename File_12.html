@@ -1,11 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Drag and Drop</title>
+    <style>
+        #dragBox {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            color: white;
+            text-align: center;
+            line-height: 100px;
+            cursor: grab;
+        }
+
+        #dropArea {
+            width: 200px;
+            height: 200px;
+            border: 2px dashed #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    
+
+<h3 title="hello">Drag the box and drop it in the area below:</h3>
+<div id="dragBox" draggable="true" ondragstart="drag(event)">Drag Me</div>
+
+<div id="dropArea" ondragover="allowDrop(event)" ondrop="drop(event)">
+    Drop Here
+</div>
+<progress value="20" max="100"></progress>
+<br>
+<meter value="70" min="0" max="100">70%</meter>
+
+
+<p>This is the first paragraph.</p>
+<hr>
+<p><ins>This is</ins> the second paragraph.</p>
+<h2>Editable Note</h2>
+<div contenteditable="true" style="border: 1px solid black; padding: 10px; width: 300px;">
+  Type your notes here...
+</div>
+
+<script>
+function allowDrop(event) {
+    event.preventDefault();  // Allows dropping
+}
+
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);  // Store dragged element ID
+}
+
+function drop(event) {
+    event.preventDefault();
+    let data = event.dataTransfer.getData("text");  // Get dragged element
+    event.target.appendChild(document.getElementById(data));  // Append to drop area
+}
+</script>
+
 </body>
 </html>
